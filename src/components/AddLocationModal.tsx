@@ -12,19 +12,21 @@ interface Props {
 export const AddLocationModal: React.FC<Props> = ({ isOpen, onClose, onSave, coords }) => {
   const [name, setName] = useState('');
   const [selectedIcon, setSelectedIcon] = useState<IconKey>('default');
+   const [category, setCategory] = useState('');
 
   // Clear the state when the Model is closed
   useEffect(() => {
     if (!isOpen) {
       setName('');
       setSelectedIcon('default');
+      setCategory('');
     }
   }, [isOpen]);
 
   if (!isOpen || !coords) return null;
 
   const handleSave = () => {
-    onSave({ name, icon: selectedIcon, lat: coords.lat, lng: coords.lng });
+    onSave({ name, icon: selectedIcon, lat: coords.lat, lng: coords.lng, category });
     onClose();
   };
 
@@ -32,7 +34,18 @@ export const AddLocationModal: React.FC<Props> = ({ isOpen, onClose, onSave, coo
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2>Adicionar Novo Local</h2>
-        <input type="text" placeholder="Nome do local" value={name} onChange={(e) => setName(e.target.value)} autoFocus/>
+        <input 
+            type="text"
+            placeholder="Nome do local"
+            value={name} onChange={(e) => setName(e.target.value)} 
+            autoFocus
+        />
+        <input
+            type="text"
+            placeholder="Categoria (ex: Farmácia, Loja)"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+        />
         <p>Selecione um ícone:</p>
         <div className="icon-selector">
           {(Object.keys(iconsForModal) as Array<keyof typeof iconsForModal>).map((iconKey) => (

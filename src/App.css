@@ -254,3 +254,27 @@
 .popup-delete-button:hover {
   background-color: #dc2626; /* Black red */
 }
+
+/* NOVO: Estilo para o botão de ação (rota) */
+.popup-action-button {
+  background-color: #3b82f6; /* Azul */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  width: calc(50% - 2px); /* Ocupa metade do espaço */
+  text-align: center;
+  margin-right: 4px; /* Espaçamento entre os botões */
+}
+
+.popup-action-button:hover {
+  background-color: #2563eb;
+}
+
+/* Ajuste no botão de remover para partilhar o espaço */
+.popup-delete-button {
+  width: calc(50% - 2px); /* Ocupa a outra metade */
+  margin-top: 0; /* Remove a margem de cima */
+}
